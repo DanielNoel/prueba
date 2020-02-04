@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptEmpleadosxGenero" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="541ecd55-6567-4b8d-986c-db7e7fb81a61">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="genero" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select dni,concat(ape,' ',nom) Empleado,gen from empleado where gen=$P{genero};]]>
+	</queryString>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gen" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="126" y="18" width="316" height="29" uuid="60e02578-14d6-4a01-b2dc-b18aab76f777"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="19" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Empleados Según Genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="51" width="40" height="15" uuid="34b2ae51-041c-4e76-b918-1bb97052fe31"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Género:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="106" y="52" width="100" height="14" uuid="5dc970eb-7063-48fc-a954-e10edc4fc8d5"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{genero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="470" y="18" width="85" height="14" uuid="f9e7365d-88d0-4a0b-8da1-94b05b44b5be"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="470" y="32" width="85" height="14" uuid="21df4aad-448b-403d-9edd-4f5711f32a56"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="44" y="0" width="85" height="18" backcolor="#00CCCC" uuid="67a011b0-36b1-4169-8492-74eeb0a57042"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="68" y="2" width="40" height="15" uuid="a179ad50-6224-4b91-943c-3246f3144154"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dni]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="129" y="0" width="283" height="18" backcolor="#00CCCC" uuid="5f9a3dbb-a860-4c88-9c88-baf429eac43f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="248" y="2" width="56" height="15" uuid="d15edd0d-05ae-45a8-965a-2be903ae8050"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="412" y="0" width="85" height="18" backcolor="#00CCCC" uuid="08a732b1-8a97-4088-bc9a-c45a3c830030"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="434" y="2" width="44" height="15" uuid="45d1453f-4867-4b94-a006-1f257b85f126"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Género]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="129" y="0" width="283" height="18" uuid="0602b653-bc94-41f1-b9b4-b61512374080"/>
+			</rectangle>
+			<textField>
+				<reportElement x="140" y="2" width="264" height="15" uuid="e9990176-dd2f-4feb-bcd7-08b7652266c3"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="412" y="0" width="85" height="18" uuid="41bfd53e-abbd-4a6e-9d9b-2f8f5e989f87"/>
+			</rectangle>
+			<textField>
+				<reportElement x="419" y="2" width="71" height="15" uuid="0a89e7f8-ae9b-4af8-9c76-395ddfe013b3"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gen}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="44" y="0" width="85" height="18" uuid="32e1aeb1-d54d-46a9-8657-d0043e781e4e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="51" y="2" width="70" height="15" uuid="70e3a721-c306-4bdb-b359-9453372db11d"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="224" y="19" width="80" height="20" uuid="968bbfaa-15ab-4bcb-bbf4-1db7563d11c9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="304" y="19" width="40" height="20" uuid="692e3070-bb22-44b7-bb39-7bf0f2fe8e0a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="190" y="14" width="200" height="1" uuid="a9ed4fa3-85ce-42cd-a103-846012f7af46"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

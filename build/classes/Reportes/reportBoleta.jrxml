@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBoleta" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="038f96e1-0631-4151-9949-1f8e730d4f2a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dni" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select e.dni, concat(e.ape,' ',e.nom) as Empleado,
+dp.suelbase as 'Sueldo actual',de.monto as Descuento, b.monto as Bonificacion,
+pm.Mes as Mes, pm.año as Año,
+(dp.suelbase+b.monto-de.monto) as 'Sueldo Total'
+from empleado e, cargosempleado ce, cargo c, detalleplanilla dp, planillames pm, descuentos de, descuentoaplicado da, bonificaciones b
+where e.idEmpleado=dp.idEmpleado and pm.idPlanillaMes=dp.idPlantillaMes and e.idempleado=ce.idEmpleado and
+c.idcargo=ce.idcargo and de.idDescuentos=da.idDescuentos and b.idBonificaciones=da.idBonificaciones and dp.idDetallePlanilla=da.idDetallePlanilla and e.dni=$P{dni};]]>
+	</queryString>
+	<field name="dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sueldo actual" class="java.math.BigDecimal"/>
+	<field name="Descuento" class="java.math.BigDecimal"/>
+	<field name="Bonificacion" class="java.math.BigDecimal"/>
+	<field name="Mes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Año" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sueldo Total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="10" width="226" height="33" uuid="98fff6ef-9b18-4181-851c-d4d2815aa941"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOLETA DE PAGO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="149" height="20" uuid="147897dd-ff3e-4ab6-bfd1-1812200f4904"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="149" height="20" uuid="7af3a8ee-90c1-4b4b-be76-9d293f33b88b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS Y NOMBRES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="0" width="186" height="20" uuid="54759a60-57a9-471f-9749-951805546bc2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="20" width="323" height="20" uuid="8397b520-218a-4808-9b14-18af367ffb01"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="532" height="19" forecolor="#00CCFF" backcolor="#00CCCC" uuid="cc72bf2e-693c-449c-b616-aebd5a596600"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="0" width="61" height="20" forecolor="#FFFFFF" uuid="5bf04c31-e028-4073-be8e-a594dbeeef3d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUELDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="f393647e-c9b0-416f-90ad-77c6e0c0d291"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BONIFICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="167" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="8d45c959-5dba-43c4-a996-2905be7aa514"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="a7aa2121-8a7d-4b12-a67f-8442346f200b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="0" width="88" height="20" forecolor="#FFFFFF" uuid="4a5cf5cb-76d2-45c0-a8b0-98957d4dfe38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="0" width="101" height="20" forecolor="#FFFFFF" uuid="2f45adf8-d6d6-496c-819a-bae734352fba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUELDO TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="20" width="79" height="20" uuid="699e82a6-8852-4ddc-9deb-6fa73220a069"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sueldo actual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="20" width="88" height="20" uuid="ce7456e8-2e67-41b5-ae3f-0f795cb0f345"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Bonificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="20" width="88" height="20" uuid="a29c0332-b52f-4286-81ef-558e6052b3ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Descuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="20" width="88" height="20" uuid="c23da14d-d056-4421-9065-9cbb1164f115"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="20" width="88" height="20" uuid="769c6678-a89e-40b4-ab59-117aa03df52c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Año}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="20" width="101" height="20" uuid="d0a30b0e-5977-4b76-8e92-82c4b27b3542"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sueldo Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

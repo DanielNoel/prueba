@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1titulacion" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04553b4c-b72d-4783-87c5-1dd00a9b2eb9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="finicio" class="java.lang.String"/>
+	<parameter name="ffinal" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select `em`.`dni` AS `Dni`,concat(`em`.`ape`,' ',`em`.`nom`) AS `Empleado`,`em`.`gen` AS `Genero`,
+`p`.`nomprofe` AS `Profesion`,date_format(`pe`.`fectitul`,'%d/%m/%Y') AS `F_Titulacion`
+from ((`profesion` `p` join `profesionemple` `pe` on((`pe`.`idProfesion` = `p`.`idProfesion`)))
+join `empleado` `em` on((`em`.`idEmpleado` = `pe`.`idEmpleado`))) where `pe`.`fectitul` between $P{finicio} and $P{ffinal}]]>
+	</queryString>
+	<field name="Dni" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Genero" class="java.lang.String"/>
+	<field name="Profesion" class="java.lang.String"/>
+	<field name="F_Titulacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="100" splitType="Stretch">
+			<textField>
+				<reportElement x="123" y="6" width="100" height="20" uuid="27f86ab4-00df-4377-99b9-6b96cbaba52c"/>
+				<textFieldExpression><![CDATA[$P{finicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="6" width="100" height="20" uuid="2ceb946a-5d81-4df6-8e09-0b06f0f90412"/>
+				<textFieldExpression><![CDATA[$P{ffinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="78" width="100" height="20" uuid="1515ed17-6cdd-4421-8602-01da31b53f04"/>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="223" y="78" width="100" height="20" uuid="cda26352-cc69-4aa4-935d-78d19dd44be8"/>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="78" width="100" height="20" uuid="2f8c8902-3d45-452f-9189-cdd8a8b94b3e"/>
+				<text><![CDATA[Profesion]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="5" width="182" height="20" uuid="8fc75d9e-0245-4419-b022-c6f0f954c9a8"/>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="5" width="100" height="20" uuid="48f95c83-86d8-42da-b01f-0e0f43d86769"/>
+				<textFieldExpression><![CDATA[$F{Genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="399" y="5" width="100" height="20" uuid="ad311056-756e-4b21-92ed-839c9fe09261"/>
+				<textFieldExpression><![CDATA[$F{Profesion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

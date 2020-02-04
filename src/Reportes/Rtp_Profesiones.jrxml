@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rtp_Profesiones" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2881e14e-5dfc-4d07-810e-0d7c92bbbec7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from profesion;]]>
+	</queryString>
+	<field name="idProfesion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomprofe" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="153" y="10" width="226" height="29" uuid="971964df-9c92-45d6-af31-2996933f3698"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Profesiones]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="463" y="15" width="77" height="14" uuid="eb60e65e-d6c1-4a37-ac32-0d3331d742b9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="463" y="29" width="77" height="14" uuid="1b999de7-f836-4bbb-a399-d8760c49b395"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="18">
+			<rectangle>
+				<reportElement x="26" y="0" width="78" height="18" uuid="454822ee-d044-4d1c-84f1-b89eb8421543"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="50" y="2" width="27" height="15" uuid="c59eb49f-6eae-4732-a47b-72a2b8127d0f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="104" y="0" width="329" height="18" uuid="b4f56250-945b-4068-a5fc-ad27452ccee4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="240" y="2" width="58" height="15" uuid="bf016b62-fd5e-4938-b5b0-3bfbbbabc13a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Profesión]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="104" y="0" width="329" height="18" uuid="52d09d3f-9a1e-4db0-b87a-52aecaaa9c89"/>
+			</rectangle>
+			<textField>
+				<reportElement x="125" y="2" width="294" height="15" uuid="a1300e88-db3a-4160-b99b-d560281580ec"/>
+				<textFieldExpression><![CDATA[$F{nomprofe}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="26" y="0" width="78" height="18" uuid="0344a371-f4cb-42e4-a47c-68d34bd285ef"/>
+			</rectangle>
+			<textField>
+				<reportElement x="35" y="2" width="55" height="15" uuid="a4777eb5-3dac-467f-98f2-ed2c6bfb28be"/>
+				<textFieldExpression><![CDATA[$F{idProfesion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

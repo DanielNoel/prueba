@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportAreaEmpleados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2b49b396-8cdc-4d71-b298-0f6c9d7ea561">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="area" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select e.dni as DNI, concat(e.ape,' ',e.nom) as Empleado, a.nom_area as Area, (dp.suelbase+b.monto-de.monto) as 'Sueldo Total'
+from empleado e, areaempleado ae, area a, detalleplanilla dp, planillames pm, descuentoaplicado da, bonificaciones b, descuentos de
+where a.idarea=ae.idarea and e.idempleado=ae.idempleado and e.idempleado=dp.idempleado
+and pm.idplanillames=dp.idplantillames and b.idbonificaciones=da.idbonificaciones and de.iddescuentos=da.iddescuentos and
+dp.iddetalleplanilla=da.iddetalleplanilla and
+pm.mes='Abril' and a.nom_area=$P{area}
+order by (dp.suelbase+b.monto-de.monto) desc limit 5;]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Area" class="java.lang.String"/>
+	<field name="Sueldo Total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="196" y="10" width="155" height="33" uuid="7e945ea4-0604-4092-8b00-05f5b14a6965"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPLEADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="43" width="41" height="20" uuid="9dca8644-a9b2-4b4b-87cd-dd1678aef0b8"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Area:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="43" width="114" height="20" uuid="4e7add4b-2df6-4ce1-9c4a-e1428814332f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Area}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="50" y="0" width="446" height="20" backcolor="#00CCCC" uuid="33274584-d5c4-44ca-a7d6-58bbb20a8b2e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="50" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="f03dde3a-a4ce-4ad4-942d-e2cd6da37723"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="246" height="20" forecolor="#FFFFFF" uuid="9a2e9beb-f858-44ae-9f76-00ab34e137dd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPLEADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="396" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="90b50db3-2f92-42bf-b4af-1eb722f095a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUELDO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="100" height="20" uuid="060fba02-802c-4267-bcb1-1960feff4b87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="246" height="20" uuid="827c5730-ede3-45cd-b92e-bbecaa34d6b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="100" height="20" uuid="b889f468-f1d1-428b-aca7-9e6131d71ad5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sueldo Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="46" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportEmpleados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0fc9f11-b5ee-4b7d-b2d9-937760e6c353">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select e.dni as DNI, concat(e.ape,' ',e.nom) as Empleado, e.gen as Genero, a.nom_area as Area, c.nomcar as Cargo
+from empleado e, cargosempleado ce, cargo c, areaempleado ae, area a
+where a.idarea=ae.idarea and e.idempleado=ae.idempleado and e.idempleado=ce.idempleado and c.idcargo=ce.idcargo;]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Empleado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Genero" class="java.lang.String"/>
+	<field name="Area" class="java.lang.String"/>
+	<field name="Cargo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="98" y="13" width="352" height="33" uuid="88d8e72e-265a-43c6-a6ea-7eddabf610b6"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE EMPLEADOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#00CCCC" uuid="662785dc-304e-420d-b10a-78b63e98fdd5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="81" height="20" forecolor="#FFFFFF" uuid="8f078e8d-2569-4217-afd5-4ef895c2b2f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="180" height="20" forecolor="#FFFFFF" uuid="c0ba8d1b-fafd-40e6-97a0-0889b799fa7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPLEADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="0" width="98" height="20" forecolor="#FFFFFF" uuid="2f667577-ba54-45c1-851c-cc3753cacf0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GENERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="359" y="0" width="98" height="20" forecolor="#FFFFFF" uuid="29b00cad-fbcf-4bb0-ba80-4104ae6c7631"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AREA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="0" width="98" height="20" forecolor="#FFFFFF" uuid="47ed1bdd-2223-487c-b1b1-30b93af9a15f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="81" height="20" uuid="ed8b23c4-4d9d-4d88-accf-fd530b1da2c3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="180" height="20" uuid="88f16f17-954e-48bc-bf71-493336e22b56"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="98" height="20" uuid="d4cc4e65-cacf-4835-bc7e-648ec45af5b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Genero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="98" height="20" uuid="ed667bc3-2f3c-4ced-9919-dba529df2d4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Area}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="98" height="20" uuid="4b0e7d3c-3e3b-4b64-9451-e592aae888b9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cargo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
